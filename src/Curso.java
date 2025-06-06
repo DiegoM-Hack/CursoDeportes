@@ -2,28 +2,38 @@ import java.sql.Array;
 import java.util.ArrayList;
 
 public class Curso {
-    private final ArrayList<Object> inscritos;
     private String nombre;
-    private int edadMin;
-    private int edadMax;
-    private String diciplina;
+    private String disciplina;
+    private int edadMinima;
+    private int edadMaxima;
     private String horario;
-    private String entrenador;
+    private Entrenador entrenador;
+    private ArrayList<Participante> participantes;
+    private final int cupoMaximo = 30;
 
-    public Curso(String nombre, int edadMin, int edadMax, String diciplina, String horario, String entrenador) {
+    public Curso(String nombre, String disciplina, int edadMinima, int edadMaxima, String horario, Entrenador entrenador) {
         this.nombre = nombre;
-        this.edadMin = edadMin;
-        this.edadMax = edadMax;
-        this.diciplina = diciplina;
+        this.disciplina = disciplina;
+        this.edadMinima = edadMinima;
+        this.edadMaxima = edadMaxima;
         this.horario = horario;
         this.entrenador = entrenador;
-        this.inscritos = new ArrayList<>();
+        this.participantes = new ArrayList<>();
     }
 
-    public boolean inscribir(Participante p) {
-        if(inscritos.size()<30 && p.getEdad() >= edadMin && p.getEdad() <= edadMax) {
-            inscritos.add(p);
-        }return true;
+    public void inscribir(Participante p) {
+        if (participantes.size() < cupoMaximo && p.getEdad() >= edadMinima && p.getEdad() <= edadMaxima) {
+            participantes.add(p);
+            System.out.println(" Participante inscrito: " + p.getNombre());
+        } else {
+            System.out.println(" No se pudo inscribir a: " + p.getNombre());
+        }
     }
 
+    public void mostrarParticipantes() {
+        System.out.println(" Participantes del curso " + nombre + ":");
+        for (Participante p : participantes) {
+            p.mostrarDatos();
+        }
+    }
 }

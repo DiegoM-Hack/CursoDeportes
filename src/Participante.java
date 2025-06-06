@@ -1,12 +1,15 @@
 public class Participante extends Persona {
-
-
-    public Participante(String cedula, String nombre, String apellido, int edad) {
+    public Participante(String nombre, String cedula, int edad) {
         super(nombre, cedula, edad);
+    }
+
+    public void inscribirseCurso(Curso curso) {
+        curso.inscribir(this);
     }
 
     @Override
     public void mostrarDatos() {
-        System.out.println("Participante: " + getNombre()+ "Edad: " + getEdad());
+        System.out.println("Participante: " + getNombre() + ", Cédula: " + getCedula() + ", Edad: " + getEdad());
     }
 }
+

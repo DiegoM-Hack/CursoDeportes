@@ -1,7 +1,7 @@
-abstract class Persona {
-    protected String nombre;
-    protected String cedula;
-    protected int edad;
+public abstract class Persona {
+    private String nombre;
+    private String cedula;
+    private int edad;
 
     public Persona(String nombre, String cedula, int edad) {
         this.nombre = nombre;
@@ -9,17 +9,16 @@ abstract class Persona {
         this.edad = edad;
     }
 
-    public abstract void mostrarDatos();
+    // Getters y Setters
+    public String getNombre() { return nombre; }
+    public void setNombre(String nombre) { this.nombre = nombre; }
 
-    public String getNombre() {
-        return nombre;
-    }
-    public void setNombre(String nombre) {}
-    public String getCedula() {
-        return cedula;
-    }
-    public void setCedula(String cedula) {}
-    public int getEdad() {
-        return edad;
-    }
+    public String getCedula() { return cedula; }
+    public void setCedula(String cedula) { this.cedula = cedula; }
+
+    public int getEdad() { return edad; }
+    public void setEdad(int edad) { this.edad = edad; }
+
+    // Método abstracto (polimorfismo)
+    public abstract void mostrarDatos();
 }
